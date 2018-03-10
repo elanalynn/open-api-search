@@ -1,3 +1,5 @@
+require_dependency 'github_service.rb'
+
 class SearchTermsController < ApplicationController
   before_action :set_search_term, only: [:show, :edit, :update, :destroy]
 
@@ -25,6 +27,8 @@ class SearchTermsController < ApplicationController
   # POST /search_terms.json
   def create
     @search_term = SearchTerm.new(search_term_params)
+
+    GitHubService.search(search_term_params[:term])
 
     respond_to do |format|
       if @search_term.save
