@@ -12,6 +12,7 @@ class SearchTermsController < ApplicationController
   # GET /search_terms/1
   # GET /search_terms/1.json
   def show
+    @projects = JSON.parse(GitHubService.search(@search_term))
   end
 
   # GET /search_terms/new
@@ -27,8 +28,6 @@ class SearchTermsController < ApplicationController
   # POST /search_terms.json
   def create
     @search_term = SearchTerm.new(search_term_params)
-
-    GitHubService.search(search_term_params[:term])
 
     respond_to do |format|
       if @search_term.save
