@@ -7,3 +7,11 @@
 
 <%= link_to 'Edit', edit_search_term_path(@search_term) %> |
 <%= link_to 'Back', search_terms_path %>
+
+<p>hello</p>
+
+<% @projects["items"].each do |project| %>
+<li>
+  <%= project["name"] %>
+</li>
+<% end %>
